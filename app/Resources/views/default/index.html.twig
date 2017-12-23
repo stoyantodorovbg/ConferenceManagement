@@ -4,6 +4,17 @@
 <div>
     Ready to start
 </div>
+{#
+    {{ if app.getUser() }}
+    <div>
+        Hallo {{ user.username }}
+    </div>
+    {{ else }}
+    <div>
+        Hallo, Stranger
+    </div>
+    {{ endif }}
+    #}
 {% endblock %}
 
 {% block stylesheets %}

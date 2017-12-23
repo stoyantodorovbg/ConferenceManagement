@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Register</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.plainPassword) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.firstName) }}
+    {{ form_row(form.lastName) }}
+    {{ form_row(form._token) }}
+        <input type="submit" value="Register" />
+    {{ form_end(form, {'render_rest': false}) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('user_index') }}">Displays all users</a>
+        </li>
+    </ul>
+{% endblock %}
