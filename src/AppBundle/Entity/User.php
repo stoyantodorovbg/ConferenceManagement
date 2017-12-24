@@ -113,6 +113,42 @@ class User implements UserInterface
     private $position;
 
     /**
+     * @ORM\OneToOne(targetEntity="Conference", inversedBy="owner")
+     * @ORM\JoinColumn(name="owner_conference_id", referencedColumnName="id")
+     */
+    private $ownerConference;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Conference", inversedBy="admins")
+     * @ORM\JoinColumn(name="admin_conference_id", referencedColumnName="id")
+     */
+    private $adminConference;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Conference", inversedBy="speakers")
+     * @ORM\JoinColumn(name="speaker_conference__id", referencedColumnName="id")
+     */
+    private $speakerConference;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ProgramPoint", inversedBy="speakers")
+     * @ORM\JoinColumn(name="speaker_program_point_id", referencedColumnName="id")
+     */
+    private $speakerProgramPoint;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Conference", inversedBy="conferenceAudience")
+     * @ORM\JoinColumn(name="audience_conference_id", referencedColumnName="id")
+     */
+    private $audienceConference;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ProgramPoint", inversedBy="audience")
+     * @ORM\JoinColumn(name="audience_program_point_id", referencedColumnName="id")
+     */
+    private $audienceProgramPoint;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Image(
      *     maxSize="700k",
@@ -412,6 +448,102 @@ class User implements UserInterface
     public function setImage($image)
     {
         $this->image = $image;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOwnerConference()
+    {
+        return $this->ownerConference;
+    }
+
+    /**
+     * @param mixed $ownerConference
+     */
+    public function setOwnerConference($ownerConference)
+    {
+        $this->ownerConference = $ownerConference;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAdminConference()
+    {
+        return $this->adminConference;
+    }
+
+    /**
+     * @param mixed $adminConference
+     */
+    public function setAdminConference($adminConference)
+    {
+        $this->adminConference = $adminConference;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpeakerConference()
+    {
+        return $this->speakerConference;
+    }
+
+    /**
+     * @param mixed $speakerConference
+     */
+    public function setSpeakerConference($speakerConference)
+    {
+        $this->speakerConference = $speakerConference;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpeakerProgramPoint()
+    {
+        return $this->speakerProgramPoint;
+    }
+
+    /**
+     * @param mixed $speakerProgramPoint
+     */
+    public function setSpeakerProgramPoint($speakerProgramPoint)
+    {
+        $this->speakerProgramPoint = $speakerProgramPoint;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAudienceConference()
+    {
+        return $this->audienceConference;
+    }
+
+    /**
+     * @param mixed $audienceConference
+     */
+    public function setAudienceConference($audienceConference)
+    {
+        $this->audienceConference = $audienceConference;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAudienceProgramPoint()
+    {
+        return $this->audienceProgramPoint;
+    }
+
+    /**
+     * @param mixed $audienceProgramPoint
+     */
+    public function setAudienceProgramPoint($audienceProgramPoint)
+    {
+        $this->audienceProgramPoint = $audienceProgramPoint;
     }
 
     /**

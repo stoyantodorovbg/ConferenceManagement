@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Conferences list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for conference in conferences %}
+            <tr>
+                <td><a href="{{ path('conference_show', { 'id': conference.id }) }}">{{ conference.id }}</a></td>
+                <td>{{ conference.name }}</td>
+                <td>{% if conference.start %}{{ conference.start|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if conference.end %}{{ conference.end|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ conference.description }}</td>
+                <td>{{ conference.price }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('conference_show', { 'id': conference.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('conference_edit', { 'id': conference.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('conference_new') }}">Create a new conference</a>
+        </li>
+    </ul>
+{% endblock %}
