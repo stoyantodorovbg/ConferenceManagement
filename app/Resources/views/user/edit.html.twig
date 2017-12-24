@@ -3,12 +3,13 @@
 {% block body %}
     <h1>Edit profile</h1>
 
-    {{ form_start(edit_form) }}
+    {{ form_start(edit_form, {'attr': {'novalidate': 'novalidate'}}) }}
     {{ form_row(edit_form.email) }}
     {{ form_row(edit_form.phone) }}
     {{ form_row(edit_form.bornOn) }}
     {{ form_row(edit_form.company) }}
     {{ form_row(edit_form.position) }}
+    {{ form_row(edit_form.image) }}
     {{ form_row(edit_form._token) }}
     <input type="submit" value="Edit" />
     {{ form_end(edit_form, {'render_rest': false}) }}

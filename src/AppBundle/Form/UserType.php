@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -33,7 +34,10 @@ class UserType extends AbstractType
             ->add('phone', TextType::class)
             ->add('bornOn', DateType::class)
             ->add('company', TextType::class)
-            ->add('position', TextType::class);
+            ->add('position', TextType::class)
+            ->add('image', FileType::class, [
+                'data_class'   =>  null
+            ]);
     }
     
     /**

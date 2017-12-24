@@ -4,6 +4,10 @@
 <div>
     Ready to start
 </div>
+    <a href="{{ path('user_new') }}">Register</a>
+    <a href="{{ path('security_login') }}">Login</a>
+    <a href="{{ path('security_logout') }}">Logout</a>
+    <a href="{{ path('user_show') }}">My profile</a>
 {#
     {{ if app.getUser() }}
     <div>

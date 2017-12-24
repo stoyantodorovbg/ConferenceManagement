@@ -5,6 +5,7 @@
 
     <table>
         <tbody>
+        <img src="{{ asset('uploads/images/' ~ user.image) }}" alt="" width="200" class="img-thumbnail"/>
             <tr>
                 <th>Id</th>
                 <td>{{ user.id }}</td>
@@ -53,7 +54,7 @@
             <a href="{{ path('user_index') }}">Display all users</a>
         </li>
         <li>
-            <a href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
+            <a href="{{ path('user_edit') }}">Edit</a>
         </li>
     </ul>
 {% endblock %}

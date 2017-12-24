@@ -66,11 +66,12 @@ class UserController extends Controller
     /**
      * Finds and displays a user entity.
      *
-     * @Route("/{id}", name="user_show")
+     * @Route("/show", name="user_show")
      * @Method("GET")
      */
-    public function showAction(User $user)
+    public function showAction()
     {
+        $user = $this->getUser();
         return $this->render('user/show.html.twig', array(
             'user' => $user,
         ));
@@ -79,18 +80,33 @@ class UserController extends Controller
     /**
      * Displays a form to edit an existing user entity.
      *
-     * @Route("/{id}/edit", name="user_edit")
+     * @Route("/edit", name="user_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, User $user)
+    public function editAction(Request $request)
     {
+        $user = $this->getUser();
+        $username = $user->getUsername();
+        $firstName = $user->getFirstName();
+        $lastName = $user->getLastName();
+        $image = $user->getImage();
+
+        $imageDirectory = $this->getParameter('images_directory');
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        $user->setUsername($username);
+        $user->setFirstName($firstName);
+        $user->setLastName($lastName);
+        $user->setImage($image);
 
-            return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
+        if ($editForm->isSubmitted()) {
+            $userService = $this->get(UserService::class);
+
+            $user = $userService->setImage($editForm, $user, $imageDirectory);
+            $userService->save($user);
+
+            return $this->redirectToRoute('user_show');
         }
 
         return $this->render('user/edit.html.twig', array(

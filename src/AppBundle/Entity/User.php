@@ -113,6 +113,15 @@ class User implements UserInterface
     private $position;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Image(
+     *     maxSize="700k",
+     *     mimeTypes={"image/png", "image/jpeg", "image/jpg"}
+     * )
+     */
+    public $image;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Role", inversedBy="users")
@@ -387,6 +396,22 @@ class User implements UserInterface
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 
     /**
