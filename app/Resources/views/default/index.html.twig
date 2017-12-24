@@ -1,24 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div>
-    Ready to start
-</div>
-    <a href="{{ path('user_new') }}">Register</a>
-    <a href="{{ path('security_login') }}">Login</a>
-    <a href="{{ path('security_logout') }}">Logout</a>
-    <a href="{{ path('user_show') }}">My profile</a>
-{#
-    {{ if app.getUser() }}
+    {% if app.getUser() %}
     <div>
-        Hallo {{ user.username }}
+        Hello {{ app.user.username }}
+<br/>
+        <a href="{{ path('security_logout') }}">Logout</a>
+        <a href="{{ path('user_show') }}">My profile</a>
     </div>
-    {{ else }}
+    {% else %}
     <div>
-        Hallo, Stranger
+        Hello, Stranger
+<br/>
+        <a href="{{ path('user_new') }}">Register</a>
+        <a href="{{ path('security_login') }}">Login</a>
     </div>
-    {{ endif }}
-    #}
+    {% endif %}
 {% endblock %}
 
 {% block stylesheets %}
