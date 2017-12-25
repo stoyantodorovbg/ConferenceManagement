@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Hall
@@ -25,6 +26,8 @@ class Hall
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     *
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -38,6 +41,11 @@ class Hall
      * @var int
      *
      * @ORM\Column(name="seatsCount", type="integer")
+     *
+     * @Assert\NotBlank()
+     *
+     * @Assert\NotBlank()
+     * @Assert\GreaterThan(0)
      */
     private $seatsCount;
 
@@ -50,6 +58,9 @@ class Hall
 
     /**
      * @ORM\ManyToMany(targetEntity="Conference", mappedBy="halls")
+     *
+     * @Assert\NotBlank()
+     * @Assert\GreaterThanOrEqual(0)
      */
     private $conferences;
 

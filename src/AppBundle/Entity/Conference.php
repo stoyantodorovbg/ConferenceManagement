@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Conference
@@ -25,6 +26,8 @@ class Conference
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     *
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -32,6 +35,8 @@ class Conference
      * @var \DateTime
      *
      * @ORM\Column(name="start", type="datetime")
+     *
+     * @Assert\GreaterThan("+0 hours")
      */
     private $start;
 
@@ -39,6 +44,8 @@ class Conference
      * @var \DateTime
      *
      * @ORM\Column(name="end", type="datetime")
+     *
+     * @Assert\GreaterThan("+0 hours")
      */
     private $end;
 
@@ -46,6 +53,8 @@ class Conference
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=10000)
+     *
+     * @Assert\NotBlank()
      */
     private $description;
 
@@ -53,6 +62,9 @@ class Conference
      * @var string
      *
      * @ORM\Column(name="price", type="decimal", precision=10, scale=0)
+     *
+     * @Assert\NotBlank()
+     * @Assert\GreaterThanOrEqual(0)
      */
     private $price;
 

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Address
@@ -25,13 +26,15 @@ class Address
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
+     *
+     * @Assert\NotBlank()
      */
     private $country;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="region", type="string", length=255)
+     * @ORM\Column(name="region", type="string", length=255, nullable=true)
      */
     private $region;
 
@@ -39,6 +42,8 @@ class Address
      * @var string
      *
      * @ORM\Column(name="town", type="string", length=255)
+     *
+     * @Assert\NotBlank()
      */
     private $town;
 
@@ -46,6 +51,8 @@ class Address
      * @var string
      *
      * @ORM\Column(name="street", type="string", length=255)
+     *
+     * @Assert\NotBlank()
      */
     private $street;
 
@@ -53,6 +60,8 @@ class Address
      * @var int
      *
      * @ORM\Column(name="number", type="integer")
+     *
+     * @Assert\NotBlank()
      */
     private $number;
 

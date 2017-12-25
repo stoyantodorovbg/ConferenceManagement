@@ -37,7 +37,7 @@ class HallController extends Controller
      *
      * @Route("/new", name="hall_new")
      * @Method({"GET", "POST"})
-     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR', 'ROLE_CONFERENCE_OWNER', ROLE_CONFERENCE_ADMIN])")
+     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR', 'ROLE_CONFERENCE_OWNER', 'ROLE_CONFERENCE_ADMIN'])")
      */
     public function newAction(Request $request)
     {
@@ -82,7 +82,7 @@ class HallController extends Controller
      *
      * @Route("/{id}/edit", name="hall_edit")
      * @Method({"GET", "POST"})
-     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR', 'ROLE_CONFERENCE_OWNER', ROLE_CONFERENCE_ADMIN])")
+     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR', 'ROLE_CONFERENCE_OWNER', 'ROLE_CONFERENCE_ADMIN'])")
      */
     public function editAction(Request $request, Hall $hall)
     {

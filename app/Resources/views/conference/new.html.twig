@@ -9,11 +9,10 @@
     {{ form_row(form.end) }}
     {{ form_row(form.description) }}
     {{ form_row(form.price) }}
-    {{ form_row(form.halls) }}
     <a href="{{ path('hall_new') }}">Add a new hall</a>
     {{ form_row(form.owner) }}
         <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    {{ form_end(form, {'render_rest': false}) }}
 
     <ul>
         <li>

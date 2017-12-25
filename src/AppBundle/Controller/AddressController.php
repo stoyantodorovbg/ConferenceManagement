@@ -37,7 +37,7 @@ class AddressController extends Controller
      *
      * @Route("/new", name="address_new")
      * @Method({"GET", "POST"})
-     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR', 'ROLE_CONFERENCE_OWNER', ROLE_CONFERENCE_ADMIN])")
+     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR', 'ROLE_CONFERENCE_OWNER', 'ROLE_CONFERENCE_ADMIN'])")
      */
     public function newAction(Request $request)
     {
@@ -81,7 +81,7 @@ class AddressController extends Controller
      *
      * @Route("/{id}/edit", name="address_edit")
      * @Method({"GET", "POST"})
-     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR', 'ROLE_CONFERENCE_OWNER', ROLE_CONFERENCE_ADMIN])")
+     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR', 'ROLE_CONFERENCE_OWNER', 'ROLE_CONFERENCE_ADMIN'])")
      */
     public function editAction(Request $request, Address $address)
     {

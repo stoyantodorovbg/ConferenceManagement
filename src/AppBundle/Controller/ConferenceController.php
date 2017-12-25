@@ -80,7 +80,7 @@ class ConferenceController extends Controller
      *
      * @Route("/{id}/edit", name="conference_edit")
      * @Method({"GET", "POST"})
-     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR', 'ROLE_CONFERENCE_OWNER', ROLE_CONFERENCE_ADMIN])")
+     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR', 'ROLE_CONFERENCE_OWNER', 'ROLE_CONFERENCE_ADMIN'])")
      */
     public function editAction(Request $request, Conference $conference)
     {
@@ -91,7 +91,7 @@ class ConferenceController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('conference_edit', array('id' => $conference->getId()));
+            return $this->redirectToRoute('conference_show', array('id' => $conference->getId()));
         }
 
         return $this->render('conference/edit.html.twig', array(
