@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Address;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -36,6 +37,7 @@ class AddressController extends Controller
      *
      * @Route("/new", name="address_new")
      * @Method({"GET", "POST"})
+     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR', 'ROLE_CONFERENCE_OWNER', ROLE_CONFERENCE_ADMIN])")
      */
     public function newAction(Request $request)
     {
@@ -79,6 +81,7 @@ class AddressController extends Controller
      *
      * @Route("/{id}/edit", name="address_edit")
      * @Method({"GET", "POST"})
+     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR', 'ROLE_CONFERENCE_OWNER', ROLE_CONFERENCE_ADMIN])")
      */
     public function editAction(Request $request, Address $address)
     {
@@ -104,6 +107,7 @@ class AddressController extends Controller
      *
      * @Route("/{id}", name="address_delete")
      * @Method("DELETE")
+     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR'])")
      */
     public function deleteAction(Request $request, Address $address)
     {

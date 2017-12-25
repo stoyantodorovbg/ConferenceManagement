@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Conference;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -36,6 +37,7 @@ class ConferenceController extends Controller
      *
      * @Route("/new", name="conference_new")
      * @Method({"GET", "POST"})
+     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR'])")
      */
     public function newAction(Request $request)
     {
@@ -78,6 +80,7 @@ class ConferenceController extends Controller
      *
      * @Route("/{id}/edit", name="conference_edit")
      * @Method({"GET", "POST"})
+     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR', 'ROLE_CONFERENCE_OWNER', ROLE_CONFERENCE_ADMIN])")
      */
     public function editAction(Request $request, Conference $conference)
     {
@@ -103,6 +106,7 @@ class ConferenceController extends Controller
      *
      * @Route("/{id}", name="conference_delete")
      * @Method("DELETE")
+     * @Security("is_granted(['ROLE_SITE_ADMIN', 'ROLE_SITE_EDITOR'])")
      */
     public function deleteAction(Request $request, Conference $conference)
     {
