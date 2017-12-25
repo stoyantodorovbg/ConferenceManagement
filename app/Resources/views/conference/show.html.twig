@@ -29,6 +29,19 @@
                 <th>Price</th>
                 <td>{{ conference.price }}</td>
             </tr>
+            <tr>
+                <th>Addresses</th>
+                {% for address in conference.addresses %}
+                    <td>{{ address.country }}, {{ address.region }}, {{ address.town }}, {{ address.street }}, {{ address.number }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Halls</th>
+                {% for hall in conference.halls %}
+                <td>{{ hall.name }}, {{ hall.address }}</td>
+                {% endfor %}
+            </tr>
+
         </tbody>
     </table>
 

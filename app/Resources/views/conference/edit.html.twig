@@ -3,9 +3,16 @@
 {% block body %}
     <h1>Conference edit</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    {{ form_start(edit_form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_row(edit_form.name) }}
+    {{ form_row(edit_form.start) }}
+    {{ form_row(edit_form.end) }}
+    {{ form_row(edit_form.description) }}
+    {{ form_row(edit_form.price) }}
+    {{ form_row(edit_form.halls) }}
+    <a href="{{ path('hall_new', { 'id': conference.id }) }}">Add a new hall</a>
+    {{ form_row(edit_form.owner) }}
+    <input type="submit" value="Create" />
     {{ form_end(edit_form) }}
 
     <ul>

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Halls list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hall in halls %}
+            <tr>
+                <td><a href="{{ path('hall_show', { 'id': hall.id }) }}">{{ hall.id }}</a></td>
+                <td>{{ hall.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('hall_show', { 'id': hall.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

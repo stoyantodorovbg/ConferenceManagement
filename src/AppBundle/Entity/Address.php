@@ -227,5 +227,10 @@ class Address
     {
         $this->conferences = $conferences;
     }
+
+    public function __toString()
+    {
+        return $this->country.', '.$this->getTown().', '.$this->street.', '.$this->number;
+    }
 }
 

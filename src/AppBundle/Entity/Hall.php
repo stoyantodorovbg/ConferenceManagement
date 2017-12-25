@@ -49,10 +49,9 @@ class Hall
     private $pricePerDay;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Conference", inversedBy="halls")
-     * @ORM\JoinColumn(name="conference_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="Conference", mappedBy="halls")
      */
-    private $conference;
+    private $conferences;
 
     /**
      * Get id
@@ -139,7 +138,7 @@ class Hall
     /**
      * @return int
      */
-    public function getPricePerDay(): int
+    public function getPricePerDay()
     {
         return $this->pricePerDay;
     }
@@ -155,17 +154,22 @@ class Hall
     /**
      * @return mixed
      */
-    public function getConference()
+    public function getConferences()
     {
-        return $this->conference;
+        return $this->conferences;
     }
 
     /**
-     * @param mixed $conference
+     * @param mixed $conferences
      */
-    public function setConference($conference)
+    public function setConferences($conferences)
     {
-        $this->conference = $conference;
+        $this->conferences = $conferences;
+    }
+
+    public function __toString()
+    {
+        return $this->name.', '.$this->address;
     }
 }
 

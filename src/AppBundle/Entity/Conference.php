@@ -73,7 +73,8 @@ class Conference
     private $admins;
 
     /**
-     * @ORM\OneToMany(targetEntity="Hall", mappedBy="conference")
+     * @ORM\ManyToMany(targetEntity="Hall", inversedBy="conferences")
+     * @ORM\JoinTable(name="conferences_halls")
      */
     private $halls;
 
@@ -333,6 +334,11 @@ class Conference
     public function setAudience($audience)
     {
         $this->audience = $audience;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }
 

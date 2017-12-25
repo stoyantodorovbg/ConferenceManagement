@@ -6,21 +6,17 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ConferenceType extends AbstractType
+class HallType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('name')
-            ->add('start')
-            ->add('end')
-            ->add('description')
-            ->add('price')
-            ->add('owner')
-            ->add('halls');
+        $builder->add('name')
+            ->add('seatsCount')
+            ->add('pricePerDay')
+            ->add('address');
     }
     
     /**
@@ -29,7 +25,7 @@ class ConferenceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Conference'
+            'data_class' => 'AppBundle\Entity\Hall'
         ));
     }
 
@@ -38,7 +34,7 @@ class ConferenceType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_conference';
+        return 'appbundle_hall';
     }
 
 
