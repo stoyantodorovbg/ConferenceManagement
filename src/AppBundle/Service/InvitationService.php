@@ -51,14 +51,17 @@ class InvitationService
 
         if ($invitation->getType() == 'speaker') {
             $user = $this->setSpeaker($conference, $user);
+            $this->confirmProgramPoint($conference, $user);
         } else {
             $user = $this->setAudience($conference, $user);
         }
 
+        $em = $this->entityManager;
+
         $connection = $this->entityManager->getConnection();
         $connection->beginTransaction();
 
-        $em = $this->entityManager;
+
         $em->persist($user);
         $em->flush();
 
@@ -80,6 +83,24 @@ class InvitationService
         $user->setAudienceConference($conference);
 
         return $user;
+    }
+
+    private function confirmProgramPoint(Conference $conference, User $user) {
+        $em = $this->entityManager;
+
+        $programPoints = $conference->getProgramPoints();
+        foreach ($programPoints as $programPoint) {
+            if ($programPoint->isConfirmed() == 0) {
+                foreach($programPoint->getSpeakers() as $speaker) {
+                    if ($speaker == $user) {
+                        $programPoint->setConfirmed(1);
+                        $em->persist($programPoint);
+                        $em->flush();
+                        break;
+                    }
+                }
+            }
+        }
     }
 
 }

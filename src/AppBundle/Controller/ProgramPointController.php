@@ -90,7 +90,7 @@ class ProgramPointController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('programpoint_edit', array('id' => $programPoint->getId()));
+            return $this->redirectToRoute('programpoint_show', array('id' => $programPoint->getId()));
         }
 
         return $this->render('programpoint/edit.html.twig', array(

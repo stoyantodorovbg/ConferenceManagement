@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,9 +16,16 @@ class ProgramPointType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('description')
+            ->add('speakers', EntityType::class, [
+                'class' => 'AppBundle:User',
+                'choice_label' => 'username',
+                'placeholder' => 'choose category',
+                'multiple' => true,
+                'expanded' => true,
+            ])
             ->add('start')
-            ->add('end')
-            ->add('description');
+            ->add('end');
     }
     
     /**

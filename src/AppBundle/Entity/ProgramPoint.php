@@ -50,20 +50,23 @@ class ProgramPoint
     private $description;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="confirmed", type="boolean")
+     */
+    private $confirmed;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Conference", inversedBy="programPoints")
      * @ORM\JoinColumn(name="conference_id", referencedColumnName="id")
      */
     private $conference;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="speakerProgramPoints")
+     * @ORM\ManyToMany(targetEntity="user", inversedBy="speakerProgramPoints")
+     * @ORM\JoinTable(name="programPoints_speakers")
      */
     private $speakers;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="audienceProgramPoints")
-     */
-    private $audience;
 
     /**
      * Get id
@@ -172,6 +175,22 @@ class ProgramPoint
     }
 
     /**
+     * @return bool
+     */
+    public function isConfirmed(): bool
+    {
+        return $this->confirmed;
+    }
+
+    /**
+     * @param bool $confirmed
+     */
+    public function setConfirmed(bool $confirmed)
+    {
+        $this->confirmed = $confirmed;
+    }
+
+    /**
      * @return mixed
      */
     public function getConference()
@@ -201,22 +220,6 @@ class ProgramPoint
     public function setSpeakers($speakers)
     {
         $this->speakers = $speakers;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAudience()
-    {
-        return $this->audience;
-    }
-
-    /**
-     * @param mixed $audience
-     */
-    public function setAudience($audience)
-    {
-        $this->audience = $audience;
     }
 }
 

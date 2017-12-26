@@ -127,8 +127,7 @@ class User implements UserInterface
     private $speakerConferences;
 
     /**
-     * @ORM\ManyToMany(targetEntity="ProgramPoint", inversedBy="speakers")
-     * @ORM\JoinTable(name="speakers_programPoints")
+     * @ORM\ManyToMany(targetEntity="ProgramPoint", mappedBy="speakers")
      */
     private $speakerProgramPoints;
 
@@ -137,12 +136,6 @@ class User implements UserInterface
      * @ORM\JoinTable(name="audience_conferences")
      */
     private $audienceConference;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="ProgramPoint", inversedBy="audience")
-     * @ORM\JoinTable(name="audience_programPoints")
-     */
-    private $audienceProgramPoint;
 
     /**
      * @ORM\OneToMany(targetEntity="Invitation", mappedBy="user")
@@ -472,22 +465,6 @@ class User implements UserInterface
     public function setAudienceConference($audienceConference)
     {
         $this->audienceConference[] = $audienceConference;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAudienceProgramPoint()
-    {
-        return $this->audienceProgramPoint;
-    }
-
-    /**
-     * @param mixed $audienceProgramPoint
-     */
-    public function setAudienceProgramPoint($audienceProgramPoint)
-    {
-        $this->audienceProgramPoint = $audienceProgramPoint;
     }
 
     /**

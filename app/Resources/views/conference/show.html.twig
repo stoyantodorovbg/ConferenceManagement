@@ -38,7 +38,9 @@
             <tr>
                 <th>Program</th>
                 {% for programPoint in conference.programPoints %}
-                    <td>{{ programPoint.name }}, {{ programPoint.description }}</td>
+                    {% if programPoint.confirmed == 1 %}
+                    <td><a href="{{ path('programpoint_show', {'id': programPoint.id}) }}">{{ programPoint.name }}</a></td>
+                    {% endif %}
                 {% endfor %}
             </tr>
             <tr>

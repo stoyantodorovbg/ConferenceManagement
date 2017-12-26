@@ -30,6 +30,7 @@ class ProgramPointService
         $conference = $conferenceRepo->find($conferenceId);
 
         $programPoint->setConference($conference);
+        $programPoint->setConfirmed(0);
 
         $em->persist($programPoint);
         $em->flush();
