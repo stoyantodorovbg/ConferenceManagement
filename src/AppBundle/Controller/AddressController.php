@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Address;
+use AppBundle\Service\AddressService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -47,9 +48,8 @@ class AddressController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($address);
-            $em->flush();
+            $addressService = $this->get(AddressService::class);
+            $addressService->new($address);
 
             return $this->redirectToRoute('conference_edit', array('id' => $hallId));
         }
@@ -115,9 +115,8 @@ class AddressController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($address);
-            $em->flush();
+            $addressService = $this->get(AddressService::class);
+            $addressService->delete($address);
         }
 
         return $this->redirectToRoute('address_index');

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Conference;
+use AppBundle\Service\ConferenceService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -45,10 +46,9 @@ class ConferenceController extends Controller
         $form = $this->createForm('AppBundle\Form\ConferenceType', $conference);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($conference);
-            $em->flush();
+        if ($form->isSubmitted()){// && $form->isValid()) {
+            $conferenceService = $this->get(ConferenceService::class);
+            $conferenceService->new($conference);
 
             return $this->redirectToRoute('conference_show', array('id' => $conference->getId()));
         }
@@ -114,9 +114,8 @@ class ConferenceController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($conference);
-            $em->flush();
+            $conferenceService = $this->get(ConferenceService::class);
+            $conferenceService->delete($conference);
         }
 
         return $this->redirectToRoute('conference_index');

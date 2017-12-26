@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\ProgramPoint;
+use AppBundle\Service\ProgramPointService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -46,15 +47,8 @@ class ProgramPointController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $conferenceRepo = $this->getDoctrine()->getRepository(Conference::class);
-            $conference = $conferenceRepo->find($conferenceId);
-
-            $programPoint->setConference($conference);
-
-            $em->persist($programPoint);
-            $em->flush();
+            $programPointService = $this->get(ProgramPointService::class);
+            $programPointService->new($programPoint, $conferenceId);
 
             return $this->redirectToRoute('conference_show', array('id' => $conferenceId));
         }
@@ -118,9 +112,8 @@ class ProgramPointController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($programPoint);
-            $em->flush();
+            $programPointService = $this->get(ProgramPointService::class);
+            $programPointService->delete($programPoint);
         }
 
         return $this->redirectToRoute('programpoint_index');

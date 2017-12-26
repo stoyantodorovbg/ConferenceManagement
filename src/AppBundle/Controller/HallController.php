@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Hall;
+use AppBundle\Service\HallService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -46,10 +47,9 @@ class HallController extends Controller
         $form = $this->createForm('AppBundle\Form\HallType', $hall);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($hall);
-            $em->flush();
+        if ($form->isSubmitted()){// && $form->isValid()) {
+            $hallService = $this->get(HallService::class);
+            $hallService->new($hall);
 
             return $this->redirectToRoute('conference_edit', array('id' => $conferenceId));
         }
@@ -116,9 +116,8 @@ class HallController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($hall);
-            $em->flush();
+            $hallService = $this->get(HallService::class);
+            $hallService->delete($hall);
         }
 
         return $this->redirectToRoute('hall_index');
