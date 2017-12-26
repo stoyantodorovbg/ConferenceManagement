@@ -56,12 +56,12 @@ class ProgramPoint
     private $conference;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="speakerProgramPoint")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="speakerProgramPoints")
      */
     private $speakers;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="audienceProgramPoint")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="audienceProgramPoints")
      */
     private $audience;
 

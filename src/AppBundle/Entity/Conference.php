@@ -76,12 +76,13 @@ class Conference
     private $addresses;
 
     /**
-     * @ORM\OneToOne(targetEntity="User", mappedBy="ownerConference")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="ownerConferences")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
      */
     private $owner;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="adminConference")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="adminsConferences")
      */
     private $admins;
 
@@ -97,20 +98,24 @@ class Conference
     private $programPoints;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="speakerConference")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="speakerConferences")
      */
     private $speakers;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="audienceConference")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="audienceConference")
      */
     private $audience;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Invitation", mappedBy="conference")
+     */
+    private $invitations;
 
     public function __construct()
     {
         $this->programPoints = new ArrayCollection();
     }
-
 
     /**
      * Get id
@@ -352,6 +357,22 @@ class Conference
     public function setAudience($audience)
     {
         $this->audience = $audience;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInvitations()
+    {
+        return $this->invitations;
+    }
+
+    /**
+     * @param mixed $invitations
+     */
+    public function setInvitations($invitations)
+    {
+        $this->invitations = $invitations;
     }
 
     public function __toString()

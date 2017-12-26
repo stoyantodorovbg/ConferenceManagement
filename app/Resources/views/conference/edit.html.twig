@@ -16,6 +16,7 @@
     {{ form_end(edit_form) }}
 
     <a href="{{ path('programpoint_new', {'id': conference.id}) }}">Add a program point</a>
+    <a href="{{ path('invitation_new', {'id': conference.id}) }}">Create a new invitation</a>
     <ul>
         <li>
             <a href="{{ path('conference_index') }}">Back to the list</a>

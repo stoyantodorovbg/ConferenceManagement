@@ -46,6 +46,30 @@
                 <th>Position</th>
                 <td>{{ user.position }}</td>
             </tr>
+            <tr>
+                <th>Waiting invitations</th>
+                {% for invitation in user.invitations %}
+                    {% if invitation.approved == 0 %}
+                    <td>
+                        <a href="{{ path('invitation_show', {'id': invitation.id}) }}">
+                            {{ invitation.name }}
+                        </a>
+                    </td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Approved invitations</th>
+                {% for invitation in user.invitations %}
+                    {% if invitation.approved == 1 %}
+                    <td>
+                        <a href="{{ path('invitation_show', {'id': invitation.id}) }}">
+                            {{ invitation.name }}
+                        </a>
+                    </td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
         </tbody>
     </table>
 

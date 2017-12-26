@@ -113,40 +113,44 @@ class User implements UserInterface
     private $position;
 
     /**
-     * @ORM\OneToOne(targetEntity="Conference", inversedBy="owner")
-     * @ORM\JoinColumn(name="owner_conference_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Conference", mappedBy="owner")
      */
-    private $ownerConference;
+    private $ownerConferences;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Conference", inversedBy="admins")
-     * @ORM\JoinColumn(name="admin_conference_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="Conference", inversedBy="admins")
+     * @ORM\JoinTable(name="admins_conferences")
      */
-    private $adminConference;
+    private $adminConferences;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Conference", inversedBy="speakers")
-     * @ORM\JoinColumn(name="speaker_conference__id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="Conference", inversedBy="speakers")
+     * @ORM\JoinTable(name="speakers_conferences")
      */
-    private $speakerConference;
+    private $speakerConferences;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ProgramPoint", inversedBy="speakers")
-     * @ORM\JoinColumn(name="speaker_program_point_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="ProgramPoint", inversedBy="speakers")
+     * @ORM\JoinTable(name="speakers_programPoints")
      */
-    private $speakerProgramPoint;
+    private $speakerProgramPoints;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Conference", inversedBy="conferenceAudience")
-     * @ORM\JoinColumn(name="audience_conference_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="Conference", inversedBy="audience")
+     * @ORM\JoinTable(name="audience_conferences")
      */
     private $audienceConference;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ProgramPoint", inversedBy="audience")
-     * @ORM\JoinColumn(name="audience_program_point_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="ProgramPoint", inversedBy="audience")
+     * @ORM\JoinTable(name="audience_programPoints")
      */
     private $audienceProgramPoint;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Invitation", mappedBy="user")
+     */
+    private $invitations;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -453,70 +457,6 @@ class User implements UserInterface
     /**
      * @return mixed
      */
-    public function getOwnerConference()
-    {
-        return $this->ownerConference;
-    }
-
-    /**
-     * @param mixed $ownerConference
-     */
-    public function setOwnerConference($ownerConference)
-    {
-        $this->ownerConference = $ownerConference;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAdminConference()
-    {
-        return $this->adminConference;
-    }
-
-    /**
-     * @param mixed $adminConference
-     */
-    public function setAdminConference($adminConference)
-    {
-        $this->adminConference = $adminConference;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSpeakerConference()
-    {
-        return $this->speakerConference;
-    }
-
-    /**
-     * @param mixed $speakerConference
-     */
-    public function setSpeakerConference($speakerConference)
-    {
-        $this->speakerConference = $speakerConference;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSpeakerProgramPoint()
-    {
-        return $this->speakerProgramPoint;
-    }
-
-    /**
-     * @param mixed $speakerProgramPoint
-     */
-    public function setSpeakerProgramPoint($speakerProgramPoint)
-    {
-        $this->speakerProgramPoint = $speakerProgramPoint;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getAudienceConference()
     {
         return $this->audienceConference;
@@ -544,6 +484,86 @@ class User implements UserInterface
     public function setAudienceProgramPoint($audienceProgramPoint)
     {
         $this->audienceProgramPoint = $audienceProgramPoint;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOwnerConferences()
+    {
+        return $this->ownerConferences;
+    }
+
+    /**
+     * @param mixed $ownerConferences
+     */
+    public function setOwnerConferences($ownerConferences)
+    {
+        $this->ownerConferences = $ownerConferences;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAdminConferences()
+    {
+        return $this->adminConferences;
+    }
+
+    /**
+     * @param mixed $adminConferences
+     */
+    public function setAdminConferences($adminConferences)
+    {
+        $this->adminConferences = $adminConferences;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpeakerConferences()
+    {
+        return $this->speakerConferences;
+    }
+
+    /**
+     * @param mixed $speakerConferences
+     */
+    public function setSpeakerConferences($speakerConferences)
+    {
+        $this->speakerConferences = $speakerConferences;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpeakerProgramPoints()
+    {
+        return $this->speakerProgramPoints;
+    }
+
+    /**
+     * @param mixed $speakerProgramPoints
+     */
+    public function setSpeakerProgramPoints($speakerProgramPoints)
+    {
+        $this->speakerProgramPoints = $speakerProgramPoints;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInvitations()
+    {
+        return $this->invitations;
+    }
+
+    /**
+     * @param mixed $invitations
+     */
+    public function setInvitations($invitations)
+    {
+        $this->invitations = $invitations;
     }
 
     /**

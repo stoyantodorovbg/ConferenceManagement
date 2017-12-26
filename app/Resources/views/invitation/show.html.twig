@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Invitation</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ invitation.id }}</td>
+            </tr>
+            <tr>
+                <th>Dateofcreation</th>
+                <td>{% if invitation.dateOfCreation %}{{ invitation.dateOfCreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Dateapproval</th>
+                <td>{% if invitation.dateApproval %}{{ invitation.dateApproval|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Approved</th>
+                <td>{% if invitation.approved %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ invitation.type }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ invitation.text }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('approve_invitation', {'id': invitation.id}) }}">Approve</a>
+{% endblock %}
