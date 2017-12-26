@@ -115,6 +115,12 @@ class Conference
     public function __construct()
     {
         $this->programPoints = new ArrayCollection();
+        $this->invitations = new ArrayCollection();
+        $this->speakers = new ArrayCollection();
+        $this->audience = new ArrayCollection();
+        $this->halls = new ArrayCollection();
+        $this->addresses = new ArrayCollection();
+        $this->admins = new ArrayCollection();
     }
 
     /**
@@ -340,7 +346,7 @@ class Conference
      */
     public function setSpeakers($speakers)
     {
-        $this->speakers = $speakers;
+        $this->speakers[] = $speakers;
     }
 
     /**
@@ -356,7 +362,7 @@ class Conference
      */
     public function setAudience($audience)
     {
-        $this->audience = $audience;
+        $this->audience[] = $audience;
     }
 
     /**

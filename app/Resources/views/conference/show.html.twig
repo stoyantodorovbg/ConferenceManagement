@@ -47,6 +47,18 @@
                 <td>{{ hall.name }}, {{ hall.address }}</td>
                 {% endfor %}
             </tr>
+            <tr>
+                <th>Speakers</th>
+                {% for speaker in conference.speakers %}
+                    <td>{{ speaker.firstName }} {{ speaker.lastName }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Audience</th>
+                {% for audience in conference.audience %}
+                    <td>{{ audience.firstName }} {{ audience.lastName }}</td>
+                {% endfor %}
+            </tr>
 
         </tbody>
     </table>

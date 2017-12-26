@@ -4,7 +4,9 @@
 namespace AppBundle\Service;
 
 
+use AppBundle\Entity\Conference;
 use AppBundle\Entity\ProgramPoint;
+use AppBundle\Repository\ConferenceRepository;
 use Doctrine\ORM\EntityManager;
 
 class ProgramPointService

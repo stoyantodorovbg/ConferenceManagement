@@ -82,8 +82,9 @@ class InvitationController extends Controller
      */
     public function approve(Invitation $invitation)
     {
+        $user = $this->getUser();
         $invitationService = $this->get(InvitationService::class);
-        $invitationService->approve($invitation);
+        $invitationService->approve($invitation, $user);
 
         return $this->redirectToRoute('user_show');
     }

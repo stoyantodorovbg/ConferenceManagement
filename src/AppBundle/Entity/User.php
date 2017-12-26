@@ -54,10 +54,7 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email.",
-     *     checkMX = true
-     * )
+     * @Assert\NotBlank
      */
     private $email;
 
@@ -170,6 +167,13 @@ class User implements UserInterface
      *     inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")})
      */
     private $roles;
+
+    public function __construct()
+    {
+        $this->invitations = new ArrayCollection();
+        $this->audienceProgramPoint = new ArrayCollection();
+        $this->speakerProgramPoints = new ArrayCollection();
+    }
 
 
     /**
@@ -467,7 +471,7 @@ class User implements UserInterface
      */
     public function setAudienceConference($audienceConference)
     {
-        $this->audienceConference = $audienceConference;
+        $this->audienceConference[] = $audienceConference;
     }
 
     /**
@@ -531,7 +535,7 @@ class User implements UserInterface
      */
     public function setSpeakerConferences($speakerConferences)
     {
-        $this->speakerConferences = $speakerConferences;
+        $this->speakerConferences[] = $speakerConferences;
     }
 
     /**
