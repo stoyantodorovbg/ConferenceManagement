@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -104,6 +105,11 @@ class Conference
      * @ORM\OneToMany(targetEntity="User", mappedBy="audienceConference")
      */
     private $audience;
+
+    public function __construct()
+    {
+        $this->programPoints = new ArrayCollection();
+    }
 
 
     /**
@@ -313,7 +319,7 @@ class Conference
      */
     public function setProgramPoints($programPoints)
     {
-        $this->programPoints = $programPoints;
+        $this->programPoints[] = $programPoints;
     }
 
     /**

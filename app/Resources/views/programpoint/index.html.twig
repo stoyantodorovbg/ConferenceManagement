@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Programpoints list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for programPoint in programPoints %}
+            <tr>
+                <td><a href="{{ path('programpoint_show', { 'id': programPoint.id }) }}">{{ programPoint.id }}</a></td>
+                <td>{{ programPoint.name }}</td>
+                <td>{% if programPoint.start %}{{ programPoint.start|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if programPoint.end %}{{ programPoint.end|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ programPoint.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('programpoint_show', { 'id': programPoint.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('programpoint_edit', { 'id': programPoint.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('programpoint_new') }}">Create a new programPoint</a>
+        </li>
+    </ul>
+{% endblock %}

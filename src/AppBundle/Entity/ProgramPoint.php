@@ -170,5 +170,53 @@ class ProgramPoint
     {
         return $this->description;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getConference()
+    {
+        return $this->conference;
+    }
+
+    /**
+     * @param mixed $conference
+     */
+    public function setConference($conference)
+    {
+        $this->conference = $conference;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpeakers()
+    {
+        return $this->speakers;
+    }
+
+    /**
+     * @param mixed $speakers
+     */
+    public function setSpeakers($speakers)
+    {
+        $this->speakers = $speakers;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAudience()
+    {
+        return $this->audience;
+    }
+
+    /**
+     * @param mixed $audience
+     */
+    public function setAudience($audience)
+    {
+        $this->audience = $audience;
+    }
 }
 

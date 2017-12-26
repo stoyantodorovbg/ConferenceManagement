@@ -36,6 +36,12 @@
                 {% endfor %}
             </tr>
             <tr>
+                <th>Program</th>
+                {% for programPoint in conference.programPoints %}
+                    <td>{{ programPoint.name }}, {{ programPoint.description }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
                 <th>Halls</th>
                 {% for hall in conference.halls %}
                 <td>{{ hall.name }}, {{ hall.address }}</td>
