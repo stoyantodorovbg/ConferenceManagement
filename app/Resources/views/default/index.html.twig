@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
+
+
+{% block body_id 'homepage' %}
+
 {% block body %}
+
     {% if app.getUser() %}
     <div>
-        Hello {{ app.user.username }}
+        Hello {{ app.user.firstName }} {{ app.user.lastName }}
 <br/>
         <a href="{{ path('security_logout') }}">Logout</a>
         <a href="{{ path('user_show') }}">My profile</a>
@@ -20,6 +25,3 @@
     {% endif %}
 {% endblock %}
 
-{% block stylesheets %}
-
-{% endblock %}
