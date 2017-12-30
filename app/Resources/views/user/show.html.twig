@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>User</h1>
 
-    <table>
+
+
+<div class="container body-content span=8 offset=2">
+    <div class="center-block">
+        <fieldset>
+        <legend>User</legend>
+    <table class="table table-hover">
         <tbody>
         <img src="{{ asset('uploads/images/' ~ user.image) }}" alt="" width="200" class="img-thumbnail"/>
             <tr>
@@ -81,4 +86,8 @@
             <a href="{{ path('user_edit') }}">Edit</a>
         </li>
     </ul>
+        </fieldset>
+    </div>
+</div>
+
 {% endblock %}
