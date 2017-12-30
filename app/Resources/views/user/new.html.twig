@@ -1,21 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_start(form) }}
-    {{ form_row(form.username) }}
-    {{ form_row(form.plainPassword) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.firstName) }}
-    {{ form_row(form.lastName) }}
-    {{ form_row(form._token) }}
-        <input type="submit" value="Register" />
-    {{ form_end(form, {'render_rest': false}) }}
+<div class="container body-content span=8 offset=2">
+    <div class="center-block">
+        <form class="form-horizontal" name="authenticate" action="{{ path('user_new') }}" method="post">
+            <fieldset>
+                <legend>Register</legend>
 
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Displays all users</a>
-        </li>
-    </ul>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Username</label>
+                    <div class="col-sm-4 ">
+                    {{ form_widget(form.username, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Password</label>
+                    <div class="col-sm-4 ">
+                    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Repeat Password</label>
+                    <div class="col-sm-4 ">
+                        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Email</label>
+                    <div class="col-sm-4 ">
+                    {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">First Name</label>
+                    <div class="col-sm-4 ">
+                    {{ form_widget(form.firstName, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Last Name</label>
+                    <div class="col-sm-4 ">
+                    {{ form_widget(form.lastName, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+
+        {{ form_row(form._token) }}
+
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                <ul>
+                    <li>
+                        <a href="{{ path('user_index') }}">Displays all users</a>
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
+    </div>
+</div>
 {% endblock %}
