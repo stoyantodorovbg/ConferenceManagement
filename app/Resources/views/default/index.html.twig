@@ -6,19 +6,21 @@
 
 {% block body %}
 
-    {% if app.getUser()  and (app.getUser().isSiteEditor() or app.getUser().isSiteAdmin()) %}
-    <div>
-        Hello {{ app.user.firstName }} {{ app.user.lastName }}
-<br/>
-        <a href="{{ path('conference_new') }}">Create conference</a>
-        <a href="{{ path('conference_index') }}">Display conferences</a>
-    </div>
-    {% elseif app.getUser()  and (app.getUser().isUser() or app.getUser().isConferenceAdmin() or app.getUser().isConferenceOwner() ) %}
+    {% if  app.getUser() %}
+        {% if  app.getUser().isSiteEditor() or app.getUser().isSiteAdmin() %}
         <div>
             Hello {{ app.user.firstName }} {{ app.user.lastName }}
-            <br/>
+        <br/>
+            <a href="{{ path('conference_new') }}">Create conference</a>
             <a href="{{ path('conference_index') }}">Display conferences</a>
         </div>
+        {% elseif app.getUser().isUser() or app.getUser().isConferenceAdmin() or app.getUser().isConferenceOwner() %}
+            <div>
+                Hello {{ app.user.firstName }} {{ app.user.lastName }}
+                <br/>
+                <a href="{{ path('conference_index') }}">Display conferences</a>
+            </div>
+        {% endif %}
     {% else %}
     <div>
         Hello, Stranger

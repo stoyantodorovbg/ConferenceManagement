@@ -149,6 +149,16 @@ class User implements UserInterface
     private $invitations;
 
     /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Message", mappedBy="recipients")
+     */
+    private $receivedMessages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="sender")
+     */
+    private $sentMessages;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Image(
      *     maxSize="700k",
@@ -649,6 +659,37 @@ class User implements UserInterface
         return $this->username;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getReceivedMessages()
+    {
+        return $this->receivedMessages;
+    }
+
+    /**
+     * @param mixed $receivedMessages
+     */
+    public function setReceivedMessages($receivedMessages)
+    {
+        $this->receivedMessages = $receivedMessages;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSentMessages()
+    {
+        return $this->sentMessages;
+    }
+
+    /**
+     * @param mixed $sentMessages
+     */
+    public function setSentMessages($sentMessages)
+    {
+        $this->sentMessages = $sentMessages;
+    }
 
 }
 
