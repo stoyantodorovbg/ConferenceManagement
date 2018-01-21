@@ -47,7 +47,7 @@ class InvitationService
         $connection = $this->entityManager->getConnection();
         $connection->beginTransaction();
 
-        $this->sendMessage($message, $user, $messageContent, [$invitation->getUser()]);
+        $this->sendMessage($message, $user, $messageContent, $invitation->getUsers());
 
         $em = $this->entityManager;
         $em->persist($invitation);
@@ -134,7 +134,7 @@ class InvitationService
         }
     }
 
-    private function sendMessage (Message $message, User $user, string $text, array $recipients)
+    private function sendMessage (Message $message, User $user, string $text, $recipients)
     {
         $message->setSender($user);
         $message->setText($text);

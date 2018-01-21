@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,7 +25,14 @@ class InvitationType extends AbstractType
             ])
             ->add('name')
             ->add('text')
-            ->add('user');
+            ->add('users', EntityType::class, [
+                'class' => 'AppBundle:User',
+                'choice_label' => 'username',
+                'placeholder' => 'choose users',
+                'multiple' => true,
+                'expanded' => true,
+                'label' => ' '
+            ]);;
     }
     
     /**

@@ -84,10 +84,19 @@ class Invitation
     private $conference;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="invitations")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", inversedBy="invitations")
+     * @ORM\JoinTable(
+     *     name="users_invitations",
+     *     joinColumns={
+     *          @ORM\JoinColumn(name="invitation_id",
+     *          referencedColumnName="id")
+     * },
+     *     inverseJoinColumns={
+     *          @ORM\JoinColumn(name="user_id",
+     *          referencedColumnName="id")
+     * })
      */
-    private $user;
+    private $users;
 
 
     /**
@@ -271,17 +280,17 @@ class Invitation
     /**
      * @return mixed
      */
-    public function getUser()
+    public function getUsers()
     {
-        return $this->user;
+        return $this->users;
     }
 
     /**
-     * @param mixed $user
+     * @param mixed $users
      */
-    public function setUser($user)
+    public function setUsers($users)
     {
-        $this->user = $user;
+        $this->users = $users;
     }
 }
 
