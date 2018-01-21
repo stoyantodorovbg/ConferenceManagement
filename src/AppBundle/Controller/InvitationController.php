@@ -49,13 +49,14 @@ class InvitationController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $invitationService = $this->get(InvitationService::class);
-            $invitationService->new($invitation, $conferenceId);
+            $invitationService->new($invitation, $conferenceId, $this->getUser());
 
             return $this->redirectToRoute('invitation_show', array('id' => $invitation->getId()));
         }
 
         return $this->render('invitation/new.html.twig', array(
             'invitation' => $invitation,
+            'conferenceId' => $conferenceId,
             'form' => $form->createView(),
         ));
     }

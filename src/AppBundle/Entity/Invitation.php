@@ -52,7 +52,7 @@ class Invitation
     /**
      * @var bool
      *
-     * @ORM\Column(name="refused", type="boolean")
+     * @ORM\Column(name="refused", type="boolean", nullable=true)
      */
     private $refused;
 
@@ -167,7 +167,7 @@ class Invitation
     /**
      * @return bool
      */
-    public function isRefused(): bool
+    public function isRefused()
     {
         return $this->refused;
     }

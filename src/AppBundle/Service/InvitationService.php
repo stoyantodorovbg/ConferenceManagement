@@ -6,6 +6,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Conference;
 use AppBundle\Entity\Invitation;
+use AppBundle\Entity\Message;
 use AppBundle\Entity\User;
 use AppBundle\Repository\ConferenceRepository;
 use Doctrine\ORM\EntityManager;
@@ -22,18 +23,37 @@ class InvitationService
         $this->entityManager = $entityManager;
     }
 
-    public function new(Invitation $invitation, int $conferenceId)
+    public function new(Invitation $invitation, int $conferenceId, User $user)
     {
         $conferenceRepo = $this->entityManager->getRepository(Conference::class);
         $conference = $conferenceRepo->find($conferenceId);
+
+        if($invitation->getType() == 'speaker') {
+            $action = 'speak';
+        } else {
+            $action = 'attend';
+        }
 
         $invitation->setConference($conference);
         $invitation->setApproved(0);
         $invitation->setDateOfCreation(new \DateTime());
 
+        $conferenceName = $conference->getName();
+
+        $messageContent = "You received an invitation to $action on $conferenceName. Check out you profile for more information.";
+
+        $message = new Message();
+
+        $connection = $this->entityManager->getConnection();
+        $connection->beginTransaction();
+
+        $this->sendMessage($message, $user, $messageContent, [$invitation->getUser()]);
+
         $em = $this->entityManager;
         $em->persist($invitation);
         $em->flush();
+
+        $connection->commit();
     }
 
     public function delete(Invitation $invitation)
@@ -60,7 +80,6 @@ class InvitationService
 
         $connection = $this->entityManager->getConnection();
         $connection->beginTransaction();
-
 
         $em->persist($user);
         $em->flush();
@@ -113,5 +132,16 @@ class InvitationService
                 }
             }
         }
+    }
+
+    private function sendMessage (Message $message, User $user, string $text, array $recipients)
+    {
+        $message->setSender($user);
+        $message->setText($text);
+        $message->setRecipients($recipients);
+        $message->setDateCreated(new \DateTime());
+        $em = $this->entityManager;
+        $em->persist($message);
+        $em->flush();
     }
 }

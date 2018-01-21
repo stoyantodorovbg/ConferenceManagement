@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container body-content span=8 offset=2">
         <div class="center-block">
-            <form class="form-horizontal" name="authenticate" action="{{ path('user_new') }}" method="post">
+            <form class="form-horizontal" name="authenticate" action="{{ path('user_edit', { 'id': user.id}) }}" method="post">
                 <fieldset>
                     <legend>Edit profile</legend>
 

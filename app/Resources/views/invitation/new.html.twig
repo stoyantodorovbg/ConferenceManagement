@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container body-content span=8 offset=2">
         <div class="center-block">
-            <form class="form-horizontal" name="authenticate" action="{{ path('user_new') }}" method="post">
+            <form class="form-horizontal" name="authenticate" action="{{ path('invitation_new', {'id': conferenceId}) }}" method="post">
                 <fieldset>
                     <legend>Invitation creation</legend>
 
@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
                             <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
-                            <button type="submit" class="btn btn-primary ">Create</button>
+                            <button type="submit" class="btn btn-primary ">Send</button>
                         </div>
                     </div>
                 </fieldset>
