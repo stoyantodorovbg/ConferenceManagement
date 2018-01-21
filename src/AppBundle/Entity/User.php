@@ -121,6 +121,12 @@ class User implements UserInterface
     private $adminConferences;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Conference", inversedBy="editors")
+     * @ORM\JoinTable(name="editors_conferences")
+     */
+    private $editorsConferences;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Conference", inversedBy="speakers")
      * @ORM\JoinTable(name="speakers_conferences")
      */
@@ -502,6 +508,22 @@ class User implements UserInterface
     /**
      * @return mixed
      */
+    public function getEditorsConferences()
+    {
+        return $this->editorsConferences;
+    }
+
+    /**
+     * @param mixed $editorsConferences
+     */
+    public function setEditorsConferences($editorsConferences)
+    {
+        $this->editorsConferences = $editorsConferences;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getSpeakerConferences()
     {
         return $this->speakerConferences;
@@ -558,6 +580,46 @@ class User implements UserInterface
             $stringRoles[] = $role->getRole();
         }
         return $stringRoles;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUser()
+    {
+        return in_array("ROLE_USER", $this->getRoles());
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSiteEditor()
+    {
+        return in_array("ROLE_SITE_EDITOR", $this->getRoles());
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSiteAdmin()
+    {
+        return in_array("ROLE_SITE_ADMIN", $this->getRoles());
+    }
+
+    /**
+     * @return bool
+     */
+    public function isConferenceOwner()
+    {
+        return in_array("ROLE_CONFERENCE_OWNER", $this->getRoles());
+    }
+
+    /**
+     * @return bool
+     */
+    public function isConferenceAdmin()
+    {
+        return in_array("ROLE_CONFERENCE_ADMIN", $this->getRoles());
     }
 
     /**

@@ -1,21 +1,64 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Address edit</h1>
+    <div class="container body-content span=8 offset=2">
+        <div class="center-block">
+            <form class="form-horizontal" name="authenticate" action="{{ path('user_new') }}" method="post">
+                <fieldset>
+                    <legend>Address edit</legend>
 
-    {{ form_start(edit_form, {'attr': {'novalidate': 'novalidate'}}) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Country</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.country, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Region</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.region, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Town</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.town, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Street</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.street, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Number</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.number, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('address_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                    {{ form_row(edit_form._token) }}
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
+                            <button type="submit" class="btn btn-primary ">Edit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    {{ form_start(delete_form) }}
+        <input class="btn btn-danger" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
+
+    <br>
+
+    <button class="btn btn info" >
+        <a href="{{ path('address_index') }}">Show all addresses</a>
+    </button>
+
 {% endblock %}

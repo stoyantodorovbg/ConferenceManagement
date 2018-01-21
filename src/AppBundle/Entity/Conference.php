@@ -87,6 +87,11 @@ class Conference
     private $admins;
 
     /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="editorsConferences")
+     */
+    private $editors;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Hall", inversedBy="conferences")
      * @ORM\JoinTable(name="conferences_halls")
      */
@@ -299,6 +304,22 @@ class Conference
     public function setAdmins($admins)
     {
         $this->admins = $admins;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEditors()
+    {
+        return $this->editors;
+    }
+
+    /**
+     * @param mixed $editors
+     */
+    public function setEditors($editors)
+    {
+        $this->editors = $editors;
     }
 
     /**

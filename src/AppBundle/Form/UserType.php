@@ -36,7 +36,8 @@ class UserType extends AbstractType
             ->add('company', TextType::class)
             ->add('position', TextType::class)
             ->add('image', FileType::class, [
-                'data_class'   =>  null
+                'data_class'   =>  null,
+                'required' => false
             ]);
     }
     

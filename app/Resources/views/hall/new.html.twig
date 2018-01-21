@@ -1,20 +1,58 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Hall creation</h1>
+    <div class="container body-content span=8 offset=2">
+        <div class="center-block">
+            <form class="form-horizontal" name="authenticate" action="{{ path('user_new') }}" method="post">
+                <fieldset>
+                    <legend>Hall creation</legend>
 
-    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.seatsCount) }}
-    {{ form_row(form.pricePerDay) }}
-    {{ form_row(form.address) }}
-    <a href="{{ path('address_new', {'id': conferenceId}) }}">Create a new address</a>
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Hall name</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(form.name, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Seats count</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(form.seatsCount, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Price per day</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(form.pricePerDay, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Address</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(form.address, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <button class="btn btn info" >
+                        <a href="{{ path('address_new', { 'id': hall.id }) }}">Create a new address</a>
+                    </button>
 
-    <ul>
-        <li>
-            <a href="{{ path('hall_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                    {{ form_row(form._token) }}
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
+                            <button type="submit" class="btn btn-primary ">Create</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <button class="btn btn info" >
+        <a href="{{ path('address_new', {'id': conferenceId}) }}">Create a new address</a>
+    </button>
+
+    <button class="btn btn info" >
+        <a href="{{ path('hall_index') }}">Shall all halls</a>
+    </button>
+
 {% endblock %}

@@ -1,0 +1,188 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background: #f3f2ed;
+    font-family: 'Lato', sans-serif;
+    font-size: 12pt;
+    font-weight: 300;
+    color: #8A8A8A;
+}
+
+h1, h2, h3 {
+    margin: 0px;
+    padding: 0px;
+    font-weight: 300;
+}
+
+p {
+    margin-bottom: 1.5em;
+    line-height: 180%;
+}
+
+a {
+    color: #D1551F;
+}
+
+strong {
+    font-weight: 700;
+    color: #2A2A2A;
+}
+
+#logo
+{
+    margin-bottom: 3em;
+}
+
+#logo h1
+{
+    color: #FFF;
+}
+
+#logo h1 a
+{
+    display: block;
+    letter-spacing: 1px;
+    position: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 4em;
+    font-weight: 900;
+    color: #323338;
+}
+
+#logo span
+{
+    display: block;
+    padding-top: 1em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    color: #8e8588;
+}
+
+
+/*********************************************************************************/
+/* Nav                                                                           */
+/*********************************************************************************/
+
+#nav
+{
+}
+
+#nav > ul > li
+{
+    display: inline-block;
+}
+
+#nav > ul > li:last-child
+{
+    padding-right: 0;
+}
+
+#nav > ul > li > a,
+#nav > ul > li > span
+{
+    display: block;
+    padding: 1em 1.5em;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 200;
+    font-size: 1em;
+    outline: 0;
+    color: #323338;
+}
+
+
+#nav > ul > li > a:hover
+{
+    color: #FFF;
+}
+
+#nav li.active a
+{
+    background: #323338;
+    border-radius: 4px;
+    color: #FFF;
+}
+
+#nav > ul > li > ul
+{
+    display: none;
+}
+
+
+/*********************************************************************************/
+/* Banner                                                                        */
+/*********************************************************************************/
+
+#banner {
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, .3);
+}
+
+#banner .banner-border {
+    padding: 20px;
+    background: #FFFFFF;
+}
+
+#banner a img {
+    display: block;
+    width: 100%;
+}
+
+/*********************************************************************************/
+/* Page Wrapper                                                                  */
+/*********************************************************************************/
+
+.homepage #page {
+    overflow: hidden;
+}
+
+/*********************************************************************************/
+/* Content                                                                       */
+/*********************************************************************************/
+
+#content {
+    padding: 0px 0px 0px 0px;
+}
+
+.twocolumn2 #content {
+}
+
+.onecolumn #content {
+}
+
+#content h2 {
+}
+
+/*********************************************************************************/
+/* Sidebar    r                                                                  */
+/*********************************************************************************/
+
+#sidebar1 {
+    padding: 0px 0px 0px 0px;
+}
+
+#sidebar1 h2 {
+}
+
+#sidebar2 {
+    padding: 0px 0px 0px 0px;
+}
+
+#sidebar2 h2 {
+}
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+/* Add a gray background color and some padding to the footer */
+footer {
+    background-color: #f2f2f2;
+    padding: 25px;
+}

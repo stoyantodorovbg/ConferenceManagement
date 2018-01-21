@@ -5,6 +5,10 @@
         <title>{% block title %}Conference Scheduler{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/bootstrap-grid.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/bootstrap-reboot.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
             <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
         {% endblock %}
@@ -13,35 +17,42 @@
     <body>
 
         {% block header %}
+            <div id="header">
+                <div class="container">
 
-            <ul class="nav nav-tabs navbar-fixed-top">
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ path('homepage') }}">Conference Scheduler</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('conference_index') }}">Conferences</a>
-                </li>
+                </div>
+
+                <ul class="nav nav-tabs navbar">
+                    <li >
+                        <a class="nav-link list-group-item" href="{{ path('homepage') }}">Conference Scheduler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link list-group-item" href="{{ path('conference_index') }}">Conferences</a>
+                    </li>
                     {% if app.user %}
-                <li class="nav-item pull-right">
-                    <a href="{{ path('security_logout') }}">
-                        Logout
-                    </a>
-                </li>
-                <li class="nav-item pull-right">
-                    <a href="{{ path('user_show')  }}">
-                        {{ app.user.firstName }} Profile
-                    </a>
-                </li>
-                <li>
+                        <li class="nav-item pull-right">
+                            <a class="nav-link list-group-item" href="{{ path('user_show')  }}">
+                                {{ app.user.firstName }} Profile
+                            </a>
+                        </li>
+                        <li class="nav-item pull-right">
+                            <a class="nav-link list-group-item" href="{{ path('security_logout') }}">
+                                Logout
+                            </a>
+                        </li>
                     {% else %}
-                <li class="nav-item pull-right">
-                    <a class="nav-link" href="{{ path('user_new') }}">Register</a>
-                </li>
-                <li class="nav-item pull-right">
-                    <a class="nav-link disabled" href="{{ path('security_login') }}">Login</a>
-                </li>
+                        <li class="nav-item pull-right">
+                            <a class="nav-link list-group-item" href="{{ path('user_new') }}">Register</a>
+                        </li>
+                        <li class="nav-item pull-right">
+                            <a class="nav-link list-group-item" href="{{ path('security_login') }}">Login</a>
+                        </li>
                     {% endif %}
-            </ul>
+                </ul>
+
+            </div>
+
+
 
         {% endblock %}
 

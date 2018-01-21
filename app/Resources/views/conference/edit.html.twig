@@ -1,30 +1,88 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Conference edit</h1>
+    <div class="container body-content span=8 offset=2">
+        <div class="center-block">
+            <form class="form-horizontal" name="authenticate" action="{{ path('user_new') }}" method="post">
+                <fieldset>
+                    <legend>Conference edit</legend>
 
-    {{ form_start(edit_form, {'attr': {'novalidate': 'novalidate'}}) }}
-    {{ form_row(edit_form.name) }}
-    {{ form_row(edit_form.start) }}
-    {{ form_row(edit_form.end) }}
-    {{ form_row(edit_form.description) }}
-    {{ form_row(edit_form.price) }}
-    {{ form_row(edit_form.halls) }}
-    <a href="{{ path('hall_new', { 'id': conference.id }) }}">Add a new hall</a>
-    {{ form_row(edit_form.owner) }}
-    <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Conference name</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.name, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Starts on</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.start, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Ends on</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.end, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Description</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.description, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Price</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.price, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Owner</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.owner, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Halls</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.halls, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <button class="btn btn info" >
+                        <a href="{{ path('hall_new', { 'id': conference.id }) }}">Add a new hall</a>
+                    </button>
 
-    <a href="{{ path('programpoint_new', {'id': conference.id}) }}">Add a program point</a>
-    <a href="{{ path('invitation_new', {'id': conference.id}) }}">Create a new invitation</a>
-    <ul>
-        <li>
-            <a href="{{ path('conference_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                    {{ form_row(edit_form._token) }}
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
+                            <button type="submit" class="btn btn-primary ">Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+<div class="container body-content span=8 offset=2 ">
+    <div class="center-block">
+
+    {{ form_start(delete_form) }}
+    <input class="btn btn-danger" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
+
+    <br>
+
+    <button class="btn btn info" >
+        <a href="{{ path('programpoint_new', {'id': conference.id}) }}">Add a program point</a>
+    </button>
+
+    <button class="btn btn info" >
+        <a href="{{ path('invitation_new', {'id': conference.id}) }}">Create new invitation</a>
+    </button>
+    </div>
+</div>
+
 {% endblock %}

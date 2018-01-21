@@ -84,6 +84,22 @@ class ConferenceController extends Controller
      */
     public function editAction(Request $request, Conference $conference)
     {
+        $userRoles = $this->getUser()->getRoles();
+
+        $isAuthenticated = false;
+        foreach($userRoles as $role) {
+            if ($role == 'ROLE_SITE_ADMIN' || $role = 'ROLE_SITE_EDITOR') {
+                $isAuthenticated = true;
+            }
+        }
+
+        $conferenceEditors = $conference->getEditors();
+        $conferenceAdmins = $conference->getAdmins();
+        $conferenceOwner = $conference->getOwner();
+
+        if (!$isAuthenticated) {
+
+        }
         $deleteForm = $this->createDeleteForm($conference);
         $editForm = $this->createForm('AppBundle\Form\ConferenceType', $conference);
         $editForm->handleRequest($request);

@@ -1,22 +1,61 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Conference creation</h1>
 
-    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.start) }}
-    {{ form_row(form.end) }}
-    {{ form_row(form.description) }}
-    {{ form_row(form.price) }}
-    <a href="{{ path('hall_new') }}">Add a new hall</a>
-    {{ form_row(form.owner) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form, {'render_rest': false}) }}
+    <div class="container body-content span=8 offset=2">
+        <div class="center-block">
+            <form class="form-horizontal" name="authenticate" action="{{ path('user_new') }}" method="post">
+                <fieldset>
+                    <legend>Conference creation</legend>
 
-    <ul>
-        <li>
-            <a href="{{ path('conference_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Conference name</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(form.name, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Starts on</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(form.start, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Ends on</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(form.end, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Description</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(form.description, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Price</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(form.price, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Owner</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(form.owner, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+
+                    {{ form_row(form._token) }}
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
 {% endblock %}

@@ -1,16 +1,64 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Edit profile</h1>
+    <div class="container body-content span=8 offset=2">
+        <div class="center-block">
+            <form class="form-horizontal" name="authenticate" action="{{ path('user_new') }}" method="post">
+                <fieldset>
+                    <legend>Edit profile</legend>
 
-    {{ form_start(edit_form, {'attr': {'novalidate': 'novalidate'}}) }}
-    {{ form_row(edit_form.email) }}
-    {{ form_row(edit_form.phone) }}
-    {{ form_row(edit_form.bornOn) }}
-    {{ form_row(edit_form.company) }}
-    {{ form_row(edit_form.position) }}
-    {{ form_row(edit_form.image) }}
-    {{ form_row(edit_form._token) }}
-    <input type="submit" value="Edit" />
-    {{ form_end(edit_form, {'render_rest': false}) }}
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Email</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.email, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Phone</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.phone, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Born on</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.bornOn, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Company</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.company, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Position</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.position, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Profile image</label>
+                        <div class="col-sm-4 ">
+                            {{ form_widget(edit_form.image, { 'attr': {'class': 'form-group'} }) }}
+                        </div>
+                    </div>
+
+                    {{ form_row(edit_form._token) }}
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <a class="btn btn-default" href="{{ path('homepage') }}">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="{{ path('user_index') }}">Displays all users</a>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 {% endblock %}
