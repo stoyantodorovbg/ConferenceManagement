@@ -43,6 +43,20 @@ class Invitation
     private $approved;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateRefusal", type="datetime", nullable=true)
+     */
+    private $dateRefusal;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="refused", type="boolean")
+     */
+    private $refused;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=256)
@@ -132,6 +146,38 @@ class Invitation
     public function getDateApproval()
     {
         return $this->dateApproval;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateRefusal(): \DateTime
+    {
+        return $this->dateRefusal;
+    }
+
+    /**
+     * @param \DateTime $dateRefusal
+     */
+    public function setDateRefusal(\DateTime $dateRefusal)
+    {
+        $this->dateRefusal = $dateRefusal;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRefused(): bool
+    {
+        return $this->refused;
+    }
+
+    /**
+     * @param bool $refused
+     */
+    public function setRefused(bool $refused)
+    {
+        $this->refused = $refused;
     }
 
     /**

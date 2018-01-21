@@ -57,6 +57,13 @@ class ProgramPoint
     private $confirmed;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="canceled", type="boolean")
+     */
+    private $canceled;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Conference", inversedBy="programPoints")
      * @ORM\JoinColumn(name="conference_id", referencedColumnName="id")
      */
@@ -188,6 +195,22 @@ class ProgramPoint
     public function setConfirmed(bool $confirmed)
     {
         $this->confirmed = $confirmed;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCanceled()
+    {
+        return $this->canceled;
+    }
+
+    /**
+     * @param mixed $canceled
+     */
+    public function setCanceled($canceled)
+    {
+        $this->canceled = $canceled;
     }
 
     /**

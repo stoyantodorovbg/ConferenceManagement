@@ -33,4 +33,9 @@ class ConferenceService
         $em->flush();
     }
 
+    public function getRefusedAudience(Conference $conference)
+    {
+
+    }
+
 }

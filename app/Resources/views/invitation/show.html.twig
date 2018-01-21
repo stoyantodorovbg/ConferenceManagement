@@ -32,5 +32,11 @@
         </tbody>
     </table>
 
+    {% if invitation.approved == 0 %}
     <a href="{{ path('approve_invitation', {'id': invitation.id}) }}">Approve</a>
+    {% endif %}
+
+    {% if invitation.refused == 0 %}
+        <a href="{{ path('refuse_invitation', {'id': invitation.id}) }}">Refuse</a>
+    {% endif %}
 {% endblock %}

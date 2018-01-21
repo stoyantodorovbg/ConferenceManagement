@@ -89,6 +89,21 @@ class InvitationController extends Controller
         return $this->redirectToRoute('user_show');
     }
 
+
+
+    /**
+     * @Route("/refuse/{id}", name="refuse_invitation")
+     * @Method("GET")
+     */
+    public function refuse(Invitation $invitation)
+    {
+        $user = $this->getUser();
+        $invitationService = $this->get(InvitationService::class);
+        $invitationService->refuse($invitation, $user);
+
+        return $this->redirectToRoute('user_show');
+    }
+
     /**
      * Displays a form to edit an existing invitation entity.
      *

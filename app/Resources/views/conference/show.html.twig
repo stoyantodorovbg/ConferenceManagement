@@ -46,21 +46,33 @@
             <tr>
                 <th>Halls</th>
                 {% for hall in conference.halls %}
-                <td>{{ hall.name }}, {{ hall.address }}</td>
+                <td>{{ hall.name }}, {{ hall.address }}; </td>
                 {% endfor %}
             </tr>
             <tr>
                 <th>Speakers</th>
                 {% for speaker in conference.speakers %}
-                    <td>{{ speaker.firstName }} {{ speaker.lastName }}</td>
+                    <td>{{ speaker.firstName }} {{ speaker.lastName }}; </td>
                 {% endfor %}
             </tr>
+
             <tr>
                 <th>Audience</th>
                 {% for audience in conference.audience %}
-                    <td>{{ audience.firstName }} {{ audience.lastName }}</td>
+                    <td>{{ audience.firstName }} {{ audience.lastName }};</td>
                 {% endfor %}
             </tr>
+
+            {% if app.getUser()  and (app.getUser().isUser() or app.getUser().isConferenceAdmin() or app.getUser().isConferenceOwner() ) %}
+            <tr>
+                <th>Refused invitations</th>
+                {% for invitation in conference.invitations %}
+                    {% if invitation.refused == 1 %}
+                    <td>{{ invitation.user.firstName }} {{ invitation.user.lastName }}; </td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endif %}
 
         </tbody>
     </table>

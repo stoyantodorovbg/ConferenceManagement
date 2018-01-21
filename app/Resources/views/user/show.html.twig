@@ -75,17 +75,28 @@
                     {% endif %}
                 {% endfor %}
             </tr>
+            <tr>
+                <th>Refused invitations</th>
+                {% for invitation in user.invitations %}
+                    {% if invitation.refused == 1 %}
+                        <td>
+                            <a href="{{ path('invitation_show', {'id': invitation.id}) }}">
+                                {{ invitation.name }}
+                            </a>
+                        </td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Display all users</a>
-        </li>
-        <li>
-            <a href="{{ path('user_edit') }}">Edit</a>
-        </li>
-    </ul>
+    <br>
+    <button class="btn btn-info">
+        <a href="{{ path('user_edit') }}">Edit profile</a>
+    </button>
+
+    <a href="{{ path('user_index') }}">Display all users</a>
+
         </fieldset>
     </div>
 </div>

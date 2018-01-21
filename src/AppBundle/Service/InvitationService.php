@@ -71,6 +71,18 @@ class InvitationService
         $connection->commit();
     }
 
+    public function refuse(Invitation $invitation, User $user)
+    {
+        $invitation->setRefused(1);
+
+        $conference = $invitation->getConference();
+
+        $em = $this->entityManager;
+
+        $em->persist($invitation);
+        $em->flush();
+    }
+
     private function setSpeaker(Conference $conference, User $user)
     {
         $user->setSpeakerConferences($conference);
@@ -102,5 +114,4 @@ class InvitationService
             }
         }
     }
-
 }
