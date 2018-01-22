@@ -36,4 +36,14 @@ class MessageService
         $em->remove($message);
         $em->flush();
     }
+
+    public function showReceivedMessages(User $user)
+    {
+        return $user->getReceivedMessages();
+    }
+
+    public function showSentMessages(User $user)
+    {
+        return $user->getSentMessages();
+    }
 }
