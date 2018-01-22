@@ -95,11 +95,35 @@ class InvitationService
         $invitation->setRefused(1);
 
         $conference = $invitation->getConference();
+        $conferenceName = $conference->getName();
+        $userFirstName = $user->getFirstName();
+        $userLastName = $user->getLastName();
+
+        if($invitation->getType() == 'speaker') {
+            $action = 'speak';
+        } else {
+            $action = 'attend';
+        }
+
+        $userRepo = $this->entityManager->getRepository(User::class);
+        $siteAdmin = $userRepo->findBy(['id' => 2]);
+
+        $messageContent = "The invitation to $action on $conferenceName is refused of $userFirstName $userLastName.";
+        $recipient = $invitation->getConference()->getOwner();
+
+        $message = new Message();
+
+        $connection = $this->entityManager->getConnection();
+        $connection->beginTransaction();
+
+        $this->sendMessage($message, $siteAdmin[0], $messageContent, $recipient);
 
         $em = $this->entityManager;
 
         $em->persist($invitation);
         $em->flush();
+
+        $connection->commit();
     }
 
     private function setSpeaker(Conference $conference, User $user)

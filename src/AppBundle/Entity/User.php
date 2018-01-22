@@ -144,7 +144,7 @@ class User implements UserInterface
     private $audienceConference;
 
     /**
-     * @ORM\OneToMany(targetEntity="Invitation", mappedBy="user")
+     * @ORM\ManyToMany(targetEntity="Invitation", mappedBy="users")
      */
     private $invitations;
 

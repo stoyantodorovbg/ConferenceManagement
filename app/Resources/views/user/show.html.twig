@@ -53,7 +53,7 @@
             </tr>
             <tr>
                 <th>Waiting invitations</th>
-                {% for invitation in user.invitations %}
+                {% for invitation in user.getInvitations %}
                     {% if invitation.approved == 0 %}
                     <td>
                         <a href="{{ path('invitation_show', {'id': invitation.id}) }}">
@@ -65,7 +65,7 @@
             </tr>
             <tr>
                 <th>Approved invitations</th>
-                {% for invitation in user.invitations %}
+                {% for invitation in user.getInvitations %}
                     {% if invitation.approved == 1 %}
                     <td>
                         <a href="{{ path('invitation_show', {'id': invitation.id}) }}">
@@ -77,7 +77,7 @@
             </tr>
             <tr>
                 <th>Refused invitations</th>
-                {% for invitation in user.invitations %}
+                {% for invitation in user.getInvitations %}
                     {% if invitation.refused == 1 %}
                         <td>
                             <a href="{{ path('invitation_show', {'id': invitation.id}) }}">
