@@ -56,6 +56,7 @@ class ProgramPointController extends Controller
         return $this->render('programpoint/new.html.twig', array(
             'programPoint' => $programPoint,
             'form' => $form->createView(),
+            'conferenceId' => $conferenceId
         ));
     }
 
